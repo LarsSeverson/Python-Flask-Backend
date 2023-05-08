@@ -1,14 +1,17 @@
 import csv
 
 def write_to_file(data):
-    with open('database/database.txt', mode='a') as database:
-        email = data['email']
-        subject = data['subject']
-        message = data['message']
-        file = database.write(f'\n{email},{subject},{message}')
+    try:
+        with open('database.txt', mode='a') as database:
+            email = data['email']
+            subject = data['subject']
+            message = data['message']
+            file = database.write(f'\n{email},{subject},{message}')
+    except FileNotFoundError as error:
+        print(error)
 
 def write_to_csv(data):
-    with open('database/database.csv', mode='a', newline='') as database:
+    with open('database.csv', mode='a', newline='') as database:
         email = data['email']
         subject = data['subject']
         message = data['message']
